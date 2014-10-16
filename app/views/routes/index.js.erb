@@ -1,0 +1,17 @@
+$("#points").html("<%= escape_javascript(render("points")) %>");
+
+var osrm_server = "http://nominatim.openstreetmap.org/";
+
+$("#map").attr("data-points", "<%= @points_map %>");
+
+<% if @begin_point %>
+    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@begin_point.lat.to_s) %>&lon=<%= escape_javascript(@begin_point.lat.to_s) %>", function( data ) {
+        $("span.begin_point").html(data["display_name"]);
+    });
+<% end %>
+
+<% if @end_point %>
+    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@end_point.lat.to_s) %>&lon=<%= escape_javascript(@end_point.lat.to_s) %>", function( data ) {
+        $("span.end_point").html(data["display_name"]);
+    });
+<% end %>

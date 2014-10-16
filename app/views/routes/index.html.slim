@@ -1,0 +1,30 @@
+.container-fluid
+  .row
+    =form_tag routes_path, method: :get, :class => "form-inline", remote: true, id: "route-form" do
+      .form-group
+        =>label_tag "ТС"
+        =>select_tag "search[transport_id]",options_for_select([["Volvo", "10000"], ["МАЗ", "10001"], ["Камаз", "10002"], ["МАН", "10003"], ["Ford", "10004"]], (params[:search][:transport_id] if params[:search]))
+      .form-group
+        => label_tag "С"
+        =>text_field_tag "search[date_from]", (params[:search][:date_from] if params[:search]), class: "datetime form-control"
+      .form-group
+        span
+          ="&nbsp;".html_safe
+      .form-group
+        => label_tag "По"
+        =>text_field_tag "search[date_to]", (params[:search][:date_to] if params[:search]), :id => "date_to", class: "datetime form-control", :disabled => params[:is_online]
+        =>
+      .form-group
+        => label_tag "Синхронизация"
+        => check_box_tag "is_online", params[:is_online], params[:is_online], id: "is_online"
+      =>submit_tag "Показать", :class => "btn btn-primary", id: "route-form"
+    br
+
+.col-md-6
+  #points
+    = render 'points'
+
+.col-md-6
+  #map data-points=@points_map style="overflow: hidden; width: 80%; height: 500px; left: 10%; top: 50px"
+      button  onclick="drawPathExample()" построить путь
+      button  onclick="continuePathExample()" Дополнить путь

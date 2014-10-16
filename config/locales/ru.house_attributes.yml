@@ -1,0 +1,127 @@
+ru:
+  house_attributes:
+    associations:
+      info:                               Инфо о доме
+      okupaemost:                         Окупаемость
+    attributes:
+      info:
+        segment:                          Сегмент
+        podyezd_count:                    Кол-во подъездов
+        etag_count:                       Кол-во этажей
+        kvartira_count:                   Кол-во квартир
+        lat:                              Координаты lat
+        lon:                              Координаты lon
+        NFS_code:                         Код НФС
+        chain_number:                     Цепь №
+        prioritet_doma_v_cepochke:        Приоритет дома в цепочке
+        address_write_date:               Дата внесения адреса
+        from_received:                    От кого получено
+
+      okupaemost:
+        building_home_price:              Стоимость строительства дома
+        building_node_price:              Стоимость строительства Узла
+        soglasovanie_price:               Стоимость согласования
+        arenda_per_month_price:           Стоимость аренды в месяц
+        transport_price:                  Ориентировочная стоимость транспорта
+        zatrati_na_materiali:             Затраты на материалы
+        check_date_by_MO:                 Дата проверки по МО
+        status_by_mo_id:                  Статус по МО
+
+      transport:
+        transport:                        Транспорт (РО/ не требуется)
+        plan_podachi_ts:                  План подачи ТС
+        fact_podachi_ts:                  Факт подачи ТС
+
+      soglasovanie:
+        dogovor_status:                   Статус договора
+        comment:                          Комментарий Согласование
+        naimenovanie_KA:                  Наименование КА
+        fio_soprovogd:                    ФИО сопровождающего
+        status_soglas:                    Статус Согласования
+        contact_KA:                       Контактные данные КА
+        trebuutsa_prot_sobr_sobst:        Требуются протоколы собраний собственников
+        trebuetsa_predproject:            Требуется предпроект
+        
+      pir:
+        plan_nachala_pir:                 План начала ПИР
+        fakt_data_nachala_pir:            Фактическая дата начала ПИР
+        pir_status:                       Статус ПИР
+        plan_peredachi_pr_na_sogl_vk:     План передачи проекта согласование в ВК
+        okonchanie_pir_plan:              Окончание ПИР План
+        okonchanie_pir_fakt:              Окончание ПИР Факт
+        plan_sogl_project:                План согласования Проекта
+        fakt_sogl_project:                Факт согласование Проекта
+        okonchanie_sogl_vk_fact:          Окончание согласования ВК факт
+        project_status:                   Статус Проекта
+        okonchanie_sogl_pir_vk:           Окончание Согл ПИР ВК
+        plan_nach_sogl_pr_uk_stroika:     План начала согласования проекта с УК Стройка
+        fakt_nach_sogl_pr_uk_stroika:     Факт начала согласования проекта с УК Стройка
+        status_sogl_uk_stroika:           Статус Согласование с УК проекта Стройка
+        plan_nachala_soglas_pr_uk_osp:    План начала согласования проекта с УК ОСП
+        fakt_nachala_soglas_pr_uk_osp:    Факт начала согласования проекта с УК ОСП
+        status_sogl_uk_osp:               Статус Согласование с УК ОСП
+        plan_okonch_sogl_pr_uk:           План окончания согласования проекта с УК
+        okonch_sogl_pir_uk:               Окончание Согл ПИР УК
+        fakt_okonch_sogl_pr_uk:           Факт окончания согласования проекта с УК
+        okonch_sogl_ul_fakt:              Окончание согласования с УК ФАКТ
+        
+      stroika:
+        kurator_stroika_id:               ФИО Куратора от Стройки
+        method_prokladki:                 Метод прокладки
+        fakt_prinatia_sogl_cepochki:      Факт принятия согласованной цепочки
+        podryadchik:                      Подрядчик
+        plan_nachala_cmp:                 План начала СМР
+        fakt_nachala_cmp:                 Факт начала СМР
+        status_smp:                       Статус СМР
+        plan_nachala_podvarki:            План начала подварки
+        fakt_nachala_podvarki:            Факт начала подварки
+        fakt_okonchania_cmp:              Факт окончания СМР
+        status_podvarki:                  Статус подварки
+        planovaya_okonch_podvarki:        Плановая окончания подварки
+        okonchanie_podvarki:              Окончание Подварки
+        fakt_okonch_podvarki:             Факт окончания подварки
+        okonch_podvarki:                  Окончание подварки
+        status_pusko_naladka:             Статус Пуско-наладка
+        plan_data_okonch_pusko_naladki:   План дата окончания пуско-наладки
+        okonch_pusko_naladki:             Окончание пуско-наладки
+        fakt_okonch_pusko_naladki:        Факт дата окончания пуско-наладки
+        okonchanie_pusko_naladki:         Окончание пуско-наладки
+
+      priemka:
+        plan_data_nachala_priemki:        План дата начала приемки
+        fakt_data_nachala_priemki:        Факт дата начала приемки
+        fakt_data_posle_ustr_zamech:      Факт дата приемки после устранения замечаний
+        status_priemka:                   Статус Приемка
+        plan_peredachi_na_aktivaciu:      План передачи на активацию
+        fakt_peredachi_na_aktivaciu:      Факт передачи на Активацию
+        plan_okonch_aktivacii:            План окончания активации
+        fakt_okonch_aktivacii:            Факт окончания активации
+        fakt_activaciya:                  Факт Активация
+
+      dop_soglasheniya:
+        status_oformlenie_dc_cmp:         Статус Оформление ДС СМР
+        nomer_dc_cmp:                     Номер ДС СМР
+        status_oformlenie_dc_pir:         Статус Оформление ДС ПИР
+        nomer_dc_pir:                     Номер ДС ПИР
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

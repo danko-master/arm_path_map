@@ -1,0 +1,35 @@
+#sum
+  = "Общая стоимость по федеральным трассам: #{@info[:total_price] if @points.count > 0} р."
+#totalWay
+    = "Пройдено всего: "  
+    span.total_way
+#price
+  = "Пройдено по федеральным трассам: #{@info[:total_distance] if @points.count > 0} км."
+#begin_point_coord
+  ="Координаты начала пути: #{@begin_point if @points.count > 0}"
+#begin_point
+  ="Начальный пункт: "
+  span.begin_point
+    = @begin_point if @points.count > 0
+
+#end_point_coord
+  ="Координаты конца пути: #{@end_point if @points.count > 0}"
+#end_point
+  ="Конечный пункт: "
+  span.end_point
+    = @end_point if @points.count > 0
+
+
+table.table.table-striped.table-bordered.table-hover
+  thead
+    th Время
+    th Широта
+    th Долгота
+    th Транспортное средство (ID)
+  tbody
+    -@points.each do |point|
+      tr
+        td = l Time.at(point.time).to_datetime, format: :long
+        td = point.lat
+        td = point.lon
+        td = point.transport_id
