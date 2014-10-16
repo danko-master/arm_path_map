@@ -29,8 +29,10 @@ function online(){
 var olmap = new OLMap();
 function drawPath()
 {
-var coords = $("#map").data('points');
- //var coords = [{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:56.1, lon:38.5}];
+  var ccc = '{"data":'+$("#map").attr('points')+"}";
+var coords = (JSON.parse(ccc)).data;
+// var coords = [{lat:56.2, lon:38.5},{lat:55.5, lon:38}];
+ var coords2 = [{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:56.1, lon:38.5}];
  //console.log(coords);
  $('.total_way').html(olmap.drawPath(coords));
 //alert(olmap.drawPath(coords));

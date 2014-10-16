@@ -1,0 +1,9 @@
+development:
+  influxdb:
+    database: "svp_points"
+    username: "svp"
+    password: "qir29sir"
+    hosts: ["172.17.10.38"]
+    port: 8086
+    imei: "ticks_2000000"
+

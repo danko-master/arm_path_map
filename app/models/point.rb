@@ -1,14 +1,18 @@
 class Point < ActiveRecordInfluxDB
   attr_accessor :time, :lat, :lon, :transport_id
-  TIME_SERIES_NAME = "svp_points"
-  #TIME_SERIES_NAME = "ticks_232230"
+  # TIME_SERIES_NAME = "svp_points"
+  # TIME_SERIES_NAME = "ticks_232230"
+  TIME_SERIES_NAME = SETTINGS_CONFIG['influxdb']['imei']
 
   def self.search(search)
     if search
       date_from = (search[:date_from].present? ? search[:date_from] : Time.now).to_date
       date_to = (search[:date_to].present? ? search[:date_to] : Time.now).to_date
-      transport_id = search[:transport_id]
-      get_data("transport_id = '#{transport_id}' AND time > '#{date_from}' and time < '#{date_to}'")
+      # transport_id = search[:transport_id]
+      # get_data("transport_id = '#{transport_id}' AND time > '#{date_from}' and time < '#{date_to}'")
+      # get_data
+      # get_data(" time > '#{date_from}' and time < '#{date_to}'")
+      get_data
     else
       get_data
     end
@@ -68,7 +72,7 @@ class Point < ActiveRecordInfluxDB
       }
       puts data_write.inspect
       p point
-      client.write_point("svp_points", data_write)
+      # client.write_point("svp_points", data_write)
 
       _time += point_per_time.second
     end

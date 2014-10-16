@@ -2,7 +2,8 @@ class RoutesController < ApplicationController
 
   def index
     # получаем TDRы
-    @info = TimeDataRoute.search(params[:search])
+    # @info = TimeDataRoute.search(params[:search])
+    @info = nil
 
     # получаем точки для отображения на карте
     data_points = Point.search(params[:search])
@@ -12,11 +13,11 @@ class RoutesController < ApplicationController
     #  cookies[:date_from] = params[:search][:date_from]
     #  cookies[:date_to] = params[:search][:date_to]
     #end
-    @points = data_points[:points]
-    @points_map = @points.map{|x| {"lat" => x.lat, "lon" => x.lon}}.to_json
+    p @points = data_points[:points]
+    p @points_map = @points.map{|x| {"lat" => x.lat, "lon" => x.lon}}.to_json
 
-    @begin_point = data_points[:begin_point]
-    @end_point = data_points[:end_point]
+    p @begin_point = data_points[:begin_point]
+    p @end_point = data_points[:end_point]
 
     if params[:search].blank?
       @points = []
