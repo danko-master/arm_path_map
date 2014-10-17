@@ -1,4 +1,5 @@
 
+$("#points").html("<%= escape_javascript(render("points")) %>");
 $("#map").attr("points", '<%= raw @points_map %>');
 
 

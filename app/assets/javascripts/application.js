@@ -21,9 +21,8 @@
 //= require_tree .
 
 function online(){
-   setTimeout(function() {
-       $("input#route-form").trigger("click")
-   }, 1000);
+  $("input#route-form").trigger("click");
+  setTimeout(online, 10000);
 }
 
 var olmap = new OLMap();
