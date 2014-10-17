@@ -1,24 +1,57 @@
-#sum
-  = "Общая стоимость по федеральным трассам: #{@info[:total_price] if @info && @info[:total_price]} р."
-#totalWay
-    = "Пройдено всего: "  
-    span.total_way 
-    ="км"
-#price
-  = "Пройдено по федеральным трассам: #{@info[:total_distance] if @info && @info[:total_distance]} км."
-#begin_point_coord
-  ="Координаты начала пути: #{@begin_point if @points.count > 0}"
-#begin_point
-  ="Начальный пункт: "
-  span.begin_point
-    = @begin_point if @points.count > 0
+.panel.panel-default
+  .panel-heading.text-center
+    strong
+      = "Параметры маршрута"
+  .panel-body style="padding:0px;"
+    table.table
+      tbody
+        tr
+          td style="width:50%;"
+            strong = "Общая стоимость по федеральным трассам:"
+          td.text-right
+            #sum
+            = "#{@info[:total_price] if @info && @info[:total_price]} р."
+        tr
+          td
+            strong = "Пройдено всего: "
+          td.text-right
+            #totalWay
+              span.total_way
+              ="км"
+        tr
+          td
+            #price
+              strong
+                = "Пройдено по федеральным трассам:"
+          td.text-right = "#{@info[:total_distance].round() if @info && @info[:total_distance]} км."
+        /tr
+          td = "Координаты начала пути: "
+          td.text-right
+            #begin_point_coord
+              = "#{@begin_point if @points.count > 0}"
+        tr
+          td
+            strong
+              = "Начало пути: "
+          td
+            #begin_point
+              span.begin_point
+                = @begin_point if @points.count > 0
+        /tr
+          td = "Координаты конца пути: "
+          td.text-right
+            #end_point_coord
+              = "#{@end_point if @points.count > 0}"
+        tr
+          td
+            strong
+              = "Конец пути: "
+          td
+            #end_point
+              span.end_point
+                = @end_point if @points.count > 0
 
-#end_point_coord
-  ="Координаты конца пути: #{@end_point if @points.count > 0}"
-#end_point
-  ="Конечный пункт: "
-  span.end_point
-    = @end_point if @points.count > 0
+
 
 
 /table.table.table-striped.table-bordered.table-hover
@@ -34,3 +67,4 @@
         td = point.lat
         td = point.lon
         td = point.transport_id
+
