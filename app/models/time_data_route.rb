@@ -1,6 +1,6 @@
 class TimeDataRoute < ActiveRecordInfluxDB
   attr_accessor :sequence_number, :time, :time_from, :time_to, :price, :transport_id, :distance
-  TIME_SERIES_NAME = "tdr"
+  TIME_SERIES_NAME = "svp_tdr"
 
   def self.search(search)
     if search
@@ -14,15 +14,17 @@ class TimeDataRoute < ActiveRecordInfluxDB
   end
 
   def self.get_total_price_and_distance(conditions = "")
-    conditions = " where " + conditions if conditions.present?
+    change_cfg("tdr")
+
+    conditions = ""#{}" where " + conditions if conditions.present?
     query = "select * from #{TIME_SERIES_NAME} #{conditions}"
     result = {:total_price => 0, :total_distance => 0}
     Rails.logger.info query
     res = client.query(query)
     return result if res.empty?
     res[ TIME_SERIES_NAME ].each do |record_hash|
-      result[:total_price] += record_hash["price"].to_i
-      result[:total_distance] += record_hash["distance"].to_i
+      result[:total_price] += record_hash["sum"].to_i
+      result[:total_distance] += record_hash["path"].to_i
     end
     return result
   end

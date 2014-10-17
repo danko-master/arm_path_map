@@ -2,8 +2,8 @@ class RoutesController < ApplicationController
 
   def index
     # получаем TDRы
-    # @info = TimeDataRoute.search(params[:search])
-    @info = nil
+    @info = TimeDataRoute.search(params[:search])
+    #@info = nil
 
     # получаем точки для отображения на карте
     data_points = Point.search(params[:search])
@@ -22,6 +22,7 @@ class RoutesController < ApplicationController
     if params[:search].blank?
       @points = []
       @points_map = []
+      @info = nil
     end
 
     respond_to do |format|

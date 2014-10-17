@@ -6,4 +6,11 @@ development:
     hosts: ["172.17.10.38"]
     port: 8086
     imei: "ticks_2000000"
+  tdr:
+    database: "svp_tdr"
+    username: "svp"
+    password: "qir29sir"
+    hosts: ["172.17.10.39"]
+    port: 8086
+    imei: "svp_tdr"
 

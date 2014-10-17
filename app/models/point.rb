@@ -18,11 +18,12 @@ class Point < ActiveRecordInfluxDB
     end
   end
 
-
   def self.get_data(conditions = "")
+    change_cfg('influxdb')
+
     conditions = " where " + conditions if conditions.present?
     query = "select * from #{TIME_SERIES_NAME} #{conditions}"
-    result = {:points => [], :begin_point => nil, :end_point => nil }
+    result = {:points => [], :begin_point => nil, :end_point => nil, :tdr_sum => 0, :tdr_path => 0}
     Rails.logger.info query
     res = client.query(query)
     return result if res.empty?

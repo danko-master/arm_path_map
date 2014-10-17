@@ -1,10 +1,11 @@
 #sum
-  = "Общая стоимость по федеральным трассам: #{@info[:total_price] if @points.count > 0} р."
+  = "Общая стоимость по федеральным трассам: #{@info[:total_price] if @info && @info[:total_price]} р."
 #totalWay
     = "Пройдено всего: "  
-    span.total_way
+    span.total_way 
+    ="км"
 #price
-  = "Пройдено по федеральным трассам: #{@info[:total_distance] if @points.count > 0} км."
+  = "Пройдено по федеральным трассам: #{@info[:total_distance] if @info && @info[:total_distance]} км."
 #begin_point_coord
   ="Координаты начала пути: #{@begin_point if @points.count > 0}"
 #begin_point
@@ -20,7 +21,7 @@
     = @end_point if @points.count > 0
 
 
-table.table.table-striped.table-bordered.table-hover
+/table.table.table-striped.table-bordered.table-hover
   thead
     th Время
     th Широта

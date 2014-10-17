@@ -2,8 +2,8 @@
   .row
     =form_tag routes_path, method: :get, :class => "form-inline", remote: true, id: "route-form" do
       .form-group
-        =>label_tag "ТС"
-        =>select_tag "search[transport_id]",options_for_select([["Volvo", "10000"], ["МАЗ", "10001"], ["Камаз", "10002"], ["МАН", "10003"], ["Ford", "10004"]], (params[:search][:transport_id] if params[:search]))
+        /=>label_tag "ТС"
+        /=>select_tag "search[transport_id]",options_for_select([["Volvo", "10000"], ["МАЗ", "10001"], ["Камаз", "10002"], ["МАН", "10003"], ["Ford", "10004"]], (params[:search][:transport_id] if params[:search]))
       .form-group
         => label_tag "С"
         =>text_field_tag "search[date_from]", (params[:search][:date_from] if params[:search]), class: "datetime form-control"
@@ -26,5 +26,5 @@
 
 .col-md-6
   #map data-points=@points_map points="[]" style="overflow: hidden; width: 80%; height: 500px; left: 10%; top: 50px"
-      button  onclick="drawPathExample()" построить путь
-      button  onclick="continuePathExample()" Дополнить путь
+      /button  onclick="drawPathExample()" построить путь
+      /button  onclick="continuePathExample()" Дополнить путь
