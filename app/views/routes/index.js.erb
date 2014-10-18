@@ -1,4 +1,8 @@
 
+<% if @points.present? %>
+  $("#points").html("<%= escape_javascript(render("points")) %>");
+<% end %>
+
 $("#map").attr("points", '<%= raw @points_map %>');
 
 
@@ -6,13 +10,13 @@ var osrm_server = "http://nominatim.openstreetmap.org/";
 
 
 <% if @begin_point %>
-    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@begin_point.lat.to_s) %>&lon=<%= escape_javascript(@begin_point.lat.to_s) %>", function( data ) {
+    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@begin_point['lat'].to_s) %>&lon=<%= escape_javascript(@begin_point['lon'].to_s) %>", function( data ) {
         $("span.begin_point").html(data["display_name"]);
     });
 <% end %>
 
 <% if @end_point %>
-    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@end_point.lat.to_s) %>&lon=<%= escape_javascript(@end_point.lat.to_s) %>", function( data ) {
+    $.get(osrm_server + "reverse?format=json&lat=<%= escape_javascript(@end_point['lat'].to_s) %>&lon=<%= escape_javascript(@end_point['lon'].to_s) %>", function( data ) {
         $("span.end_point").html(data["display_name"]);
     });
 <% end %>

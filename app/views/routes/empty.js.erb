@@ -1,0 +1,7 @@
+$("#points").html("Информация по данному IMEI отсутствует");
+$("#map").attr("points", '[{"lat":1,"lon":1}]');
+var osrm_server = "http://nominatim.openstreetmap.org/";
+$.get(osrm_server + "reverse?format=json&lat=1&lon=1", function( data ) {
+        $("span.begin_point").html(data["display_name"]);
+    });
+drawPath();

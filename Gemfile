@@ -54,6 +54,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'spring',        group: :development
 
 
-gem "influxdb-rails"
+# gem "influxdb-rails"
+gem 'influxdb', '~> 0.1.8'
 
 gem 'faker'
