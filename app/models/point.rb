@@ -31,11 +31,15 @@ class Point # < ActiveRecordInfluxDB
 
   def self.get_data(conditions="", imei)    
     result = {:points => [], :begin_point => nil, :end_point => nil, :tdr_sum => 0, :tdr_path => 0}
-    res = INFLUX_CONN.query "select * from #{SETTINGS_CONFIG['influxdb']['series']} where imei=#{imei} #{conditions} order asc"
-    result[:points] = res[SETTINGS_CONFIG['influxdb']['series']]
-    if res.present? && result[:points].size > 0
-      result[:begin_point] = result[:points].first
-      result[:end_point] = result[:points].last
+    begin
+      res = INFLUX_CONN.query "select * from #{SETTINGS_CONFIG['influxdb']['series']} where imei=#{imei} #{conditions} order asc"
+      result[:points] = res[SETTINGS_CONFIG['influxdb']['series']]
+      if res.present? && result[:points].size > 0
+        result[:begin_point] = result[:points].first
+        result[:end_point] = result[:points].last
+      end
+    rescue Exception => e
+      puts "ERROR! #{e}"
     end
     result
   end

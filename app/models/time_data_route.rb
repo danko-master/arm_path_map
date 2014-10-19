@@ -32,13 +32,17 @@ class TimeDataRoute # < ActiveRecordInfluxDB
   
   def self.get_total_price_and_distance(conditions = "", imei)
     result = {:total_price => 0, :total_distance => 0}
-    res = INFLUX_CONN_TDR.query "select * from #{SETTINGS_CONFIG['tdr']['series']} where imei=#{imei} #{conditions} order asc"
-    if res.present? && res[SETTINGS_CONFIG['tdr']['series']].size > 0
-      res[SETTINGS_CONFIG['tdr']['series']].each do |record_hash|
-        p record_hash
-        result[:total_price] += record_hash["sum"].to_i
-        result[:total_distance] += record_hash["path"].to_i
+    begin
+      res = INFLUX_CONN_TDR.query "select * from #{SETTINGS_CONFIG['tdr']['series']} where imei=#{imei} #{conditions} order asc"
+      if res.present? && res[SETTINGS_CONFIG['tdr']['series']].size > 0
+        res[SETTINGS_CONFIG['tdr']['series']].each do |record_hash|
+          p record_hash
+          result[:total_price] += record_hash["sum"].to_i
+          result[:total_distance] += record_hash["path"].to_i
+        end
       end
+    rescue Exception => e
+      puts "ERROR! #{e}"
     end
     result
   end
