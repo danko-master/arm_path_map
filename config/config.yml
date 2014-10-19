@@ -5,7 +5,7 @@ development:
     password: "qir29sir"
     hosts: ["172.17.10.38"]
     port: 8086
-    series: "test"
+    series: "points"
 
 
   tdr:

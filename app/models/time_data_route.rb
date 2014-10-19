@@ -8,15 +8,17 @@ class TimeDataRoute # < ActiveRecordInfluxDB
         # date_from = (search[:date_from].present? ? search[:date_from] : Time.now).to_datetime.to_i
         # date_to = (search[:date_to].present? ? search[:date_to] : Time.now).to_datetime.to_i
         # transport_id = search[:transport_id]
-        date_from = search[:date_from] if search[:date_from].present?
-        date_to = search[:date_to] if search[:date_to].present?
+        
+        # в инфлюксе нет оператора >= или аналогичный
+        date_from = (DateTime.parse(search[:date_from]).to_i - 24*60*60)*1000000 if search[:date_from].present?
+        date_to = (DateTime.parse(search[:date_to]).to_i + 24*60*60)*1000000 if search[:date_to].present?
 
         if search[:date_from].present? && search[:date_to].present? 
-          get_total_price_and_distance(" and time1 > '#{date_from}' and time1 < '#{date_to}'", imei)
+          get_total_price_and_distance(" and time > #{date_from} and time < #{date_to}", imei)
         elsif search[:date_from].present? && search[:date_to].blank?
-          get_total_price_and_distance(" and time1 > '#{date_from}'", imei)
+          get_total_price_and_distance(" and time > #{date_from}", imei)
         elsif search[:date_from].blank? && search[:date_to].present?
-          get_total_price_and_distance(" and time1 < '#{date_to}'", imei)
+          get_total_price_and_distance(" and time < #{date_to}", imei)
         else
           get_total_price_and_distance("", imei)
         end
@@ -33,7 +35,8 @@ class TimeDataRoute # < ActiveRecordInfluxDB
   def self.get_total_price_and_distance(conditions = "", imei)
     result = {:total_price => 0, :total_distance => 0}
     begin
-      res = INFLUX_CONN_TDR.query "select * from #{SETTINGS_CONFIG['tdr']['series']} where imei=#{imei} #{conditions} order asc"
+      p query = "select * from #{SETTINGS_CONFIG['tdr']['series']} where imei=#{imei} #{conditions} limit 100 order asc"
+      res = INFLUX_CONN_TDR.query query
       if res.present? && res[SETTINGS_CONFIG['tdr']['series']].size > 0
         res[SETTINGS_CONFIG['tdr']['series']].each do |record_hash|
           p record_hash

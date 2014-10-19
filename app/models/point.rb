@@ -8,15 +8,16 @@ class Point # < ActiveRecordInfluxDB
     if imei.present?
       p "imei present"
       if search
-        date_from = search[:date_from] if search[:date_from].present?
-        date_to = search[:date_to] if search[:date_to].present?
+        # в инфлюксе нет оператора >= или аналогичный
+        date_from = (DateTime.parse(search[:date_from]).to_i - 24*60*60)*1000000 if search[:date_from].present?
+        date_to = (DateTime.parse(search[:date_to]).to_i + 24*60*60)*1000000 if search[:date_to].present?
 
         if search[:date_from].present? && search[:date_to].present? 
-          get_data(" and time1 > '#{date_from}' and time1 < '#{date_to}'", imei)
+          get_data(" and time > #{date_from} and time < #{date_to}", imei)
         elsif search[:date_from].present? && search[:date_to].blank?
-          get_data(" and time1 > '#{date_from}'", imei)
+          get_data(" and time > #{date_from}", imei)
         elsif search[:date_from].blank? && search[:date_to].present?
-          get_data(" and time1 < '#{date_to}'", imei)
+          get_data(" and time < #{date_to}", imei)
         else
           get_data("", imei)
         end
@@ -32,7 +33,8 @@ class Point # < ActiveRecordInfluxDB
   def self.get_data(conditions="", imei)    
     result = {:points => [], :begin_point => nil, :end_point => nil, :tdr_sum => 0, :tdr_path => 0}
     begin
-      res = INFLUX_CONN.query "select * from #{SETTINGS_CONFIG['influxdb']['series']} where imei=#{imei} #{conditions} order asc"
+      p query = "select * from #{SETTINGS_CONFIG['influxdb']['series']} where imei=#{imei} #{conditions} limit 100 order asc"
+      res = INFLUX_CONN.query query
       result[:points] = res[SETTINGS_CONFIG['influxdb']['series']]
       if res.present? && result[:points].size > 0
         result[:begin_point] = result[:points].first
