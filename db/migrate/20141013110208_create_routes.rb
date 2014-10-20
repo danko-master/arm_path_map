@@ -1,8 +1,8 @@
 class CreateRoutes < ActiveRecord::Migration
   def change
-    create_table :routes do |t|
+    # create_table :routes do |t|
 
-      t.timestamps
-    end
+    #   t.timestamps
+    # end
   end
 end

@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: svpdb
+  database: points #svpdb
   username: svp
   encoding: utf8
   password: qir29sir
-  # host: 172.17.10.24
-  # port: 5432
-  host: localhost
-  port: 15432
+  host: 172.17.10.38
+  port: 5432
+  # host: localhost
+  # port: 15432

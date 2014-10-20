@@ -13,9 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20141013110208) do
 
-  create_table "routes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "points", force: true do |t|
+    t.text    "imei"
+    t.float   "lat"
+    t.float   "lon"
+    t.integer "time", limit: 8
   end
 
 end

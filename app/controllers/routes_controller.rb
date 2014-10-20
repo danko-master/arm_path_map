@@ -22,7 +22,7 @@ class RoutesController < ApplicationController
     # получаем точки для отображения на карте
     p data_points = Point.search(params[:search], imei)
 
-    if data_points.present? && data_points[:points].present? && data_points[:points].size > 0
+    if data_points.present? && data_points.size > 0
       p @points = data_points
       p @points_map = @points.map{|x| {"lat" => x.lat, "lon" => x.lon}}.to_json
 
