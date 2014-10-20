@@ -14,7 +14,8 @@ development:
     password: "qir29sir"
     hosts: ["172.17.10.39"]
     port: 8086
-    series: "test"
+    series: "svp_tdr"
+    # series: "test"
     # imei: "svp_tdr"
 
 

@@ -34,6 +34,7 @@ var coords = (JSON.parse(ccc)).data;
 // var coords = [{lat:56.2, lon:38.5},{lat:55.5, lon:38}];
  var coords2 = [{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:55, lon:37},{lat:56, lon:38},{lat:56.1, lon:38.5}];
  //console.log(coords);
+ olmap.clear();
  $('.total_way').html(olmap.drawPath(coords).toFixed(2));
 //alert(olmap.drawPath(coords));
 }
@@ -47,7 +48,7 @@ function continuePathExample()
 
 
 $(document).ready(function(){
-  olmap.init('map');
+  olmap.init('map', 'truck.png');
   drawPath();
     $(document).on("click", "input.datetime", function(){
         $(this).datetimepicker({
