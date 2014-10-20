@@ -58,3 +58,8 @@ gem 'spring',        group: :development
 gem 'influxdb', '~> 0.1.8'
 
 gem 'faker'
+
+
+
+
+gem 'pg', '~> 0.17.1'

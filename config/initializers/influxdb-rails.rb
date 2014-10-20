@@ -1,6 +1,24 @@
 SETTINGS_CONFIG = YAML.load_file("#{Rails.root}/config/config.yml")[Rails.env]
-INFLUX_CONN = InfluxAdapter.conn
+# INFLUX_CONN = InfluxAdapter.conn
 INFLUX_CONN_TDR = InfluxAdapter.conn_tdr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # InfluxDB::Rails.configure do |config|
 #   config.influxdb_database = SETTINGS_CONFIG['influxdb']['database']

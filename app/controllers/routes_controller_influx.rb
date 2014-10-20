@@ -22,12 +22,19 @@ class RoutesController < ApplicationController
     # получаем точки для отображения на карте
     p data_points = Point.search(params[:search], imei)
 
-    if data_points.present? && data_points[:points].present? && data_points[:points].size > 0
-      p @points = data_points
-      p @points_map = @points.map{|x| {"lat" => x.lat, "lon" => x.lon}}.to_json
 
-      p @begin_point = data_points.first
-      p @end_point = data_points.last
+    #if params[:search]
+      # сохраняем в куки последний запрос
+    #  cookies[:date_from] = params[:search][:date_from]
+    #  cookies[:date_to] = params[:search][:date_to]
+    #end
+
+    if data_points.present? && data_points[:points].present? && data_points[:points].size > 0
+      p @points = data_points[:points]
+      p @points_map = @points.map{|x| {"lat" => x['lat'], "lon" => x['lon']}}.to_json
+
+      p @begin_point = data_points[:begin_point]
+      p @end_point = data_points[:end_point]
 
       if params[:search].blank?
         @points = []
